@@ -1,0 +1,722 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>R/Cモニター</title>
+  </head>
+  <body>
+    <input id="display1" type="checkbox" onchange="position(50,50);">
+    <div name="position">
+      <div name="lock" onclick="document.getElementById('display1').checked=false;"></div>
+      <div name="map">
+        <div name="location1"></div>
+        <div name="location2"></div>
+      </div>
+    </div>
+    <label for="display1"><img src="data:image/svg+xml;charset=utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22_x31_0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%20512%20512%22%20style%3D%22width%3A%20256px%3B%20height%3A%20256px%3B%20opacity%3A%201%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%20.st0%7Bfill%3A%23374149%3B%7D%3C%2Fstyle%3E%3Cg%3E%20%3Cpath%20class%3D%22st0%22%20d%3D%22M256%2C0C145.004%2C0%2C54.699%2C90.305%2C54.699%2C201.301C54.699%2C376.574%2C256%2C512%2C256%2C512%20s201.301-135.426%2C201.301-310.699C457.301%2C90.305%2C367%2C0%2C256%2C0z%20M256%2C282.516c-44.855%2C0-81.215-36.36-81.215-81.215%20s36.36-81.215%2C81.215-81.215s81.215%2C36.36%2C81.215%2C81.215S300.855%2C282.516%2C256%2C282.516z%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%3B%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"></label>
+    
+    <input id="display2" type="checkbox" onchange="reload();">
+    <div name="connect">
+      <div name="lock" onclick="document.getElementById('display2').checked=false;"></div>
+      <div name="list"></div>
+    </div>
+    <label for="display2"><img src="data:image/svg+xml;charset=utf8,%3C!--%20Generator%3A%20Adobe%20Illustrator%2024.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200)%20--%3E%3Csvg%20version%3D%221.1%22%20id%3D%22_x31_0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%20512%20512%22%20style%3D%22width%3A%20256px%3B%20height%3A%20256px%3B%20opacity%3A%201%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%20.st0%7Bfill%3A%23374149%3B%7D%3C%2Fstyle%3E%3Cg%3E%20%3Cpath%20class%3D%22st0%22%20d%3D%22M256.015%2C358.254c-18.808%2C0-35.843%2C7.633-48.179%2C19.965c-12.336%2C12.336-19.969%2C29.375-19.969%2C48.182%20c0%2C18.808%2C7.633%2C35.843%2C19.969%2C48.179c12.336%2C12.336%2C29.371%2C19.969%2C48.179%2C19.969c18.807%2C0%2C35.846-7.633%2C48.178-19.969%20c12.336-12.336%2C19.969-29.371%2C19.969-48.179c0-18.807-7.633-35.846-19.969-48.182C291.862%2C365.887%2C274.822%2C358.254%2C256.015%2C358.254%20z%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%3B%22%3E%3C%2Fpath%3E%20%3Cpath%20class%3D%22st0%22%20d%3D%22M494.455%2C94.09c-69.119-49.788-151.776-76.64-238.488-76.64c-86.704%2C0-169.357%2C26.922-238.458%2C76.818%20c-21.188%2C15.302-23.489%2C46.082-5.026%2C64.577l0.043%2C0.043c0.936%2C0.943%2C2.002%2C1.689%2C3.007%2C2.526c0.13%2C0.109%2C0.258%2C0.218%2C0.389%2C0.324%20c7.746%2C6.304%2C17.228%2C9.602%2C26.813%2C9.642c0.054%2C0%2C0.109%2C0.007%2C0.163%2C0.007c0.026%2C0%2C0.051-0.007%2C0.077-0.007%20c2.071-0.004%2C4.117-0.16%2C6.166-0.474c0.12-0.018%2C0.24-0.04%2C0.36-0.062c6.086-0.983%2C12.026-3.182%2C17.297-7%20c54.887-39.759%2C120.476-61.214%2C189.17-61.214c68.832%2C0%2C134.465%2C21.389%2C189.308%2C61.042c5.267%2C3.808%2C11.201%2C5.999%2C17.283%2C6.982%20c0.113%2C0.018%2C0.229%2C0.037%2C0.342%2C0.055c2.053%2C0.313%2C4.102%2C0.469%2C6.174%2C0.477c0.022%2C0%2C0.044%2C0.003%2C0.069%2C0.003l0%2C0%20c0.048%2C0%2C0.095-0.007%2C0.146-0.007c9.585-0.033%2C19.07-3.33%2C26.816-9.628c0.12-0.098%2C0.237-0.2%2C0.353-0.298%20c1.012-0.841%2C2.082-1.59%2C3.029-2.537C517.991%2C140.216%2C515.691%2C109.382%2C494.455%2C94.09z%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%3B%22%3E%3C%2Fpath%3E%20%3Cpath%20class%3D%22st0%22%20d%3D%22M366.51%2C214.966c-33.732-17.745-71.442-27.15-110.543-27.15c-39.133%2C0-76.862%2C9.42-110.611%2C27.19%20c-24.996%2C13.158-29.371%2C47.306-9.417%2C67.3l0.164%2C0.163c13.242%2C13.272%2C33.448%2C16.002%2C50.111%2C7.411%20c21.414-11.04%2C45.187-16.882%2C69.753-16.882c24.672%2C0%2C48.492%2C5.81%2C69.899%2C16.777c16.638%2C8.525%2C36.77%2C5.788%2C49.984-7.429l0.05-0.048%20C395.888%2C262.308%2C391.531%2C228.129%2C366.51%2C214.966z%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%3B%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"></label>
+    
+    <input id="display3" type="checkbox">
+    <div name="setting">
+      <div name="lock" onclick="document.getElementById('display3').checked=false;"></div>
+      <div name="menu">
+
+        
+        <div name="car">
+          <p name="name">車名:<input type="text"></p>
+          <p name="speed">最高速度:<input type="number" min="0" onchange="this.value=Math.round(this.value);if(this.value<0){this.value=0}">km/h</p>
+          <p name="mission">トランスミッション:<select>
+            <option value="AT">AT</option>
+            <option value="MT">MT</option>
+          </select></p>
+          <p name="support">運転アシストレベル:<input type="range" max="10" min="0" value="2"></p>
+        </div>
+
+
+        <div name="ship">
+          <p name="name">船名:<input type="text"></p>
+          <p name="speed">最高速度:<input type="number" min="0" onchange="this.value=Math.round(this.value);if(this.value<0){this.value=0}">kt</p>
+          <p name="support">操縦アシストレベル:<input type="range" max="10" min="0" value="2"></p>
+        </div>
+
+
+        <div name="plane">
+          <p name="name">機体名:<input type="text"></p>
+          <p name="speed">最高速度:<input type="number" min="0" onchange="this.value=Math.round(this.value);if(this.value<0){this.value=0}">kt</p>
+          <p name="altitude">最高高度:<input type="number" min="0" onchange="if(this.value<0){this.value=0}">ft</p>
+          <p name="support">操縦アシストレベル:<input type="range" max="10" min="0" value="2"></p>
+        </div>
+
+        
+      </div>
+    </div>
+    <label for="display3"><img src="data:image/svg+xml;charset=utf8,%3C!--%20Generator%3A%20Adobe%20Illustrator%2018.0.0%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200)%20--%3E%3Csvg%20version%3D%221.1%22%20id%3D%22_x31_0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%20512%20512%22%20style%3D%22width%3A%20256px%3B%20height%3A%20256px%3B%20opacity%3A%201%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%20.st0%7Bfill%3A%23374149%3B%7D%3C%2Fstyle%3E%3Cg%3E%20%3Cpath%20class%3D%22st0%22%20d%3D%22M489.4%2C328.121l-35.714-23.633c-6.18-4.09-9.383-11.39-8.23-18.71c1.527-9.703%2C2.34-19.645%2C2.34-29.778%20c0-10.133-0.813-20.074-2.34-29.778c-1.153-7.316%2C2.054-14.621%2C8.23-18.706l35.714-23.637c8.363-5.531%2C10.973-16.614%2C5.962-25.297%20l-35.317-61.165c-5.012-8.683-15.914-11.965-24.886-7.488l-38.325%2C19.114c-6.629%2C3.308-14.562%2C2.43-20.324-2.23%20c-15.41-12.465-32.789-22.59-51.598-29.836c-6.902-2.66-11.614-9.094-12.062-16.473l-2.606-42.695%20C309.63%2C7.801%2C301.338%2C0%2C291.315%2C0h-70.629c-10.023%2C0-18.317%2C7.801-18.93%2C17.809l-2.606%2C42.695%20c-0.45%2C7.379-5.16%2C13.813-12.062%2C16.473c-18.809%2C7.246-36.188%2C17.371-51.598%2C29.836c-5.762%2C4.66-13.695%2C5.538-20.325%2C2.23%20L76.842%2C89.93c-8.973-4.477-19.875-1.195-24.886%2C7.488l-35.317%2C61.165c-5.011%2C8.683-2.402%2C19.766%2C5.961%2C25.297l35.715%2C23.637%20c6.18%2C4.086%2C9.382%2C11.39%2C8.23%2C18.706c-1.527%2C9.703-2.34%2C19.645-2.34%2C29.778c0%2C10.133%2C0.813%2C20.074%2C2.34%2C29.778%20c1.152%2C7.32-2.05%2C14.621-8.23%2C18.71l-35.715%2C23.633c-8.363%2C5.535-10.972%2C16.614-5.961%2C25.297l35.317%2C61.168%20c5.011%2C8.68%2C15.914%2C11.962%2C24.886%2C7.489l38.324-19.114c6.63-3.309%2C14.563-2.43%2C20.325%2C2.23%20c15.41%2C12.465%2C32.789%2C22.594%2C51.598%2C29.836c6.902%2C2.66%2C11.613%2C9.094%2C12.062%2C16.473l2.606%2C42.691%20c0.613%2C10.004%2C8.906%2C17.809%2C18.93%2C17.809h70.629c10.023%2C0%2C18.316-7.805%2C18.93-17.809l2.606-42.691%20c0.449-7.379%2C5.16-13.813%2C12.062-16.473c18.809-7.242%2C36.187-17.371%2C51.598-29.836c5.762-4.66%2C13.695-5.539%2C20.324-2.23%20l38.325%2C19.114c8.972%2C4.473%2C19.874%2C1.191%2C24.886-7.489l35.317-61.168C500.373%2C344.734%2C497.763%2C333.656%2C489.4%2C328.121z%20M320.424%2C256%20c0%2C35.582-28.844%2C64.426-64.422%2C64.426c-35.582%2C0-64.426-28.843-64.426-64.426c0-35.578%2C28.844-64.426%2C64.426-64.426%20C291.58%2C191.574%2C320.424%2C220.422%2C320.424%2C256z%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%3B%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E"></label>
+    
+    <div name="control">
+      <canvas id="monitor"></canvas>
+      <div name="meters">
+
+        
+        <div name="car">
+          <div name="speed" class="meter">
+            <div name="needle"></div>
+            <span name="value">0</span>
+          </div>
+          <div name="torque" class="meter">
+            <div name="needle"></div>
+            <span name="value">0</span>
+          </div>
+          <div name="fuel" class="meter">
+            <div name="needle"></div>
+            <span name="value">0</span>
+          </div>
+        </div>
+        
+        
+        <div name="ship">
+          <div name="speed" class="meter">
+            <div name="needle"></div>
+            <span name="value">0</span>
+          </div>
+          <div name="wind" class="meter">
+            <div name="needle"></div>
+            <span name="value">0</span>
+          </div>
+          <div name="direction" class="meter">
+            <span name="value">N</span>
+            <div name="needle"></div>
+          </div>
+          <div name="gps" class="meter">
+            <span name="value">N:0°<br>E:0°</span>
+          </div>
+          <div name="fuel" class="meter">
+            <div name="needle"></div>
+            <span name="value">0</span>
+          </div>
+        </div>
+        
+        
+        <div name="plane">
+          <div name="speed" class="meter">
+            <div name="needle"></div>
+            <span name="value">0</span>
+          </div>
+          <div name="altitude" class="meter">
+            <span name="value">0</span>
+          </div>
+          <div name="direction" class="meter">
+            <div name="needle"></div>
+            <span name="value">N</span>
+          </div>
+          <div name="balance" class="meter">
+            <div name="background"></div>
+            <div name="needle"></div>
+          </div>
+          <div name="fuel" class="meter">
+            <div name="needle"></div>
+            <span name="value">0</span>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <style>
+      body{
+        background-color:gray;
+      }
+      div[name="lock"]{
+        background-color:#0008;
+        height:100%;
+        width:100%;
+        z-index:2;
+        position:fixed;
+        top:0px;
+        left:0px;
+      }
+
+      #display1{
+        display:none;
+      }
+      label[for="display1"]{
+        z-index:1;
+        position:fixed;
+        top:0px;
+        right:10em;
+      }
+      label[for="display1"]>img{
+        height:5em;
+        width:5em;
+      }
+      div[name="position"]{
+        display:none;
+      }
+      div[name="position"]>[name="map"]{
+        background-color:#050;
+        border-color:#fff;
+        border-style:solid;
+        overflow:hidden;
+        height:50em;
+        width:50em;
+        border-width:1em;
+        border-radius:50%;
+        z-index:3;
+        transform:translate(-50%,-50%);
+        position:fixed;
+        top:50%;
+        left:50%;
+      }
+      div[name="position"]>[name="map"]>[name="location1"]{
+        background-color:#afa;
+        border-style:none;
+        height:2em;
+        width:2em;
+        border-radius:50%;
+        z-index:3;
+        position:absolute;
+        top:50%;
+        left:50%;
+      }
+      div[name="position"]>[name="map"]>[name="location2"]{
+        background-color:#faa;
+        border-style:none;
+        height:2em;
+        width:2em;
+        border-radius:50%;
+        z-index:3;
+        position:absolute;
+        top:50%;
+        left:50%;
+      }
+      #display1:checked+div[name="position"]{
+        display:block;
+      }
+      
+      #display2{
+        display:none;
+      }
+      label[for="display2"]{
+        z-index:1;
+        position:fixed;
+        top:0px;
+        right:5em;
+      }
+      label[for="display2"]>img{
+        height:5em;
+        width:5em;
+      }
+      div[name="connect"]{
+        display:none;
+      }
+      div[name="connect"]>[name="list"]{
+        background-color:#fff;
+        overflow:scroll;
+        overflow-x:hidden;
+        height:40em;
+        width:30em;
+        z-index:3;
+        transform:translate(-50%,-50%);
+        position:fixed;
+        top:50%;
+        left:50%;
+      }
+      div[name="connect"]>[name="list"]>span{
+        white-space:nowrap;
+        font-size:4em;
+      }
+      div[name="connect"]>[name="list"]>span::after{
+        background-color:#aaa;
+        border-radius:1em;
+        content:'';
+        display:block;
+        height:0.05em;
+        width:95%;
+        margin:0 auto;
+      }
+      div[name="connect"]>[name="list"]>span:last-child::after{
+        content:none;
+      }
+      #display2:checked+div[name="connect"]{
+        display:block;
+      }
+      
+      #display3{
+        display:none;
+      }
+      label[for="display3"]{
+        z-index:1;
+        position:fixed;
+        top:0px;
+        right:0px;
+      }
+      label[for="display3"]>img{
+        height:5em;
+        width:5em;
+      }
+      div[name="setting"]{
+        display:none;
+      }
+      div[name="setting"]>[name="menu"]{
+        background-color:#fff;
+        height:40em;
+        width:80em;
+        z-index:3;
+        transform:translate(-50%,-50%);
+        position:fixed;
+        top:50%;
+        left:50%;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="name"]{
+        font-size:6em;
+        margin:0;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="name"]>input{
+        width:10em;
+        font-size:100%;
+        margin:0;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="speed"]{
+        font-size:6em;
+        margin:0;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="speed"]>input{
+        width:2em;
+        font-size:100%;
+        margin:0;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="mission"]{
+        font-size:6em;
+        margin:0;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="mission"]>select{
+        font-size:1em;
+        margin:0;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="altitude"]{
+        font-size:6em;
+        margin:0;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="altitude"]>input{
+        width:4em;
+        font-size:1em;
+        margin:0;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="support"]{
+        font-size:6em;
+        margin:0;
+        position:relative;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="support"]>input{
+        appearance:none;
+        height:0.25em;
+        width:20em;
+        background-color:#333;
+        border-radius:0.5em;
+        position:absolute;
+        top:57.5%;
+      }
+      div[name="setting"]>[name="menu"]>div>[name="support"]>input::-webkit-slider-thumb{
+        appearance:none;
+        width:2.5em;
+        height:5em;
+        background-color:#00f;
+        border-radius:0.5em;
+      }
+      #display3:checked+div[name="setting"]{
+        display:block;
+      }
+      
+      #monitor{
+        height:100%;
+        width:100%;
+        z-index:0;
+        position:fixed;
+        top:0px;
+        left:0px;
+      }
+      div[name="meters"]{
+        white-space:nowrap;
+        z-index:1;
+        transform:translate(-50%,-50%);
+        position:fixed;
+        bottom:-22.5%;
+        left:50%;
+      }
+      .meter{
+        color:#fff;
+        background-color:#0008;
+        border-color:#fff8;
+        border-style:solid;
+        display:inline-block;
+        height:22.5em;
+        width:22.5em;
+        border-width:0.5em;
+        border-radius:50%;
+        position:relative;
+      }
+      .meter>[name="needle"]{
+        background-color:#f00;
+        display:content;
+        height:1em;
+        width:1em;
+        border-radius:50%;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+      }
+      .meter>[name="needle"]::before{
+        background-color:#f00;
+        display:block;
+        content:'';
+        height:10em;
+        width:0.5em;
+        clip-path:polygon(50% 0%,0% 100%,75% 100%);
+        position:relative;
+        bottom:9.75em;
+        left:0.3225em;
+      }
+      .meter>[name="needle"]::after{
+        background-color:#f00;
+        display:block;
+        content:'';
+        height:1em;
+        width:0.375em;
+        clip-path:polygon(0 0,100% 0%,50% 100%);
+        position:relative;
+        bottom:9.5em;
+        left:0.3225em;
+      }
+      .meter>[name="value"]{
+        color:#fff;
+        font-size:6em;
+        transform:translate(-50%,-50%);
+        position:absolute;
+        top:70%;
+        left:50%;
+      }
+      .meter>[name="value"]::after{
+        color:#fff;
+        font-size:40%;
+        transform:translate(-50%,-50%);
+        position:absolute;
+        top:95%;
+        left:50%;
+      }
+      .meter[name="fuel"]{
+        height:11.25em;
+        width:11.25em;
+        transform:translate(-50%,-50%);
+        border-width:0.5em;
+        position:absolute;
+      }
+      .meter[name="fuel"]>[name="needle"]{
+        height:0.5em;
+        width:0.5em;
+      }
+      .meter[name="fuel"]>[name="needle"]::before{
+        height:5em;
+        width:0.25em;
+        bottom:4.875em;
+        left:0.16125em;
+      }
+      .meter[name="fuel"]>[name="needle"]::after{
+        height:0.5em;
+        width:0.1875em;
+        bottom:4.75em;
+        left:0.16125em;
+      }
+      .meter[name="fuel"]>[name="value"]{
+        font-size:3em;
+      }
+      .meter[name="fuel"]>[name="value"]::after{
+        content:"L";
+      }
+      
+      [name="car"]>.meter[name="speed"]>[name="value"]::after{
+        content:"km/h";
+      }
+      [name="car"]>.meter[name="torque"]>[name="value"]::after{
+        content:"速";
+      }
+      [name="car"]>.meter[name="fuel"]{
+        bottom:-25%;
+        right:-40%;
+      }
+      [name="car"]>.meter[name="fuel"]>[name="value"]::after{
+        content:"L";
+      }
+      
+      [name="ship"]>.meter[name="speed"]>[name="value"]::after{
+        content:"kt";
+      }
+      [name="ship"]>.meter[name="wind"]>[name="needle"]{
+        display:none;
+      }
+      [name="ship"]>.meter[name="wind"]>[name="value"]{
+        position:absolute;
+        top:50%;
+        left:50%;
+      }
+      [name="ship"]>.meter[name="wind"]>[name="value"]::after{
+        content:"m/s";
+      }
+      [name="ship"]>.meter[name="direction"]>[name="needle"]{
+        border-radius:0;
+        height:7em;
+        width:4em;
+        clip-path:polygon(50% 100%,0% 0%,100% 0%);
+        transform:translate(0%,0%);
+        position:absolute;
+        top:41%;
+        left:41%;
+      }
+      [name="ship"]>.meter[name="direction"]>[name="needle"]::before{
+        display:none;
+      }
+      [name="ship"]>.meter[name="direction"]>[name="needle"]::after{
+        display:none;
+      }
+      [name="ship"]>.meter[name="direction"]>[name="value"]{
+        position:absolute;
+        top:15%;
+        left:50%;
+      }
+      [name="ship"]>.meter[name="gps"]>[name="value"]{
+        white-space:normal;
+        position:absolute;
+        top:50%;
+        left:50%;
+      }
+      [name="ship"]>.meter[name="fuel"]{
+        transform:translate(-50%,-50%);
+        bottom:75%;
+        right:-6%;
+      }
+      
+      [name="plane"]>.meter[name="speed"]>[name="value"]::after{
+        content:"kt";
+      }
+      [name="plane"]>.meter[name="altitude"]>[name="needle"]{
+        display:none;
+      }
+      [name="plane"]>.meter[name="altitude"]>[name="value"]{
+        position:absolute;
+        top:50%;
+        left:50%;
+      }
+      [name="plane"]>.meter[name="altitude"]>[name="value"]::after{
+        content:"ft";
+      }
+      [name="plane"]>.meter[name="direction"]>[name="needle"]{
+        border-radius:0;
+        height:7em;
+        width:4em;
+        clip-path:polygon(50% 100%,0% 0%,100% 0%);
+        transform:translate(0%,0%);
+        position:absolute;
+        top:41%;
+        left:41%;
+      }
+      [name="plane"]>.meter[name="direction"]>[name="needle"]::before{
+        display:none;
+      }
+      [name="plane"]>.meter[name="direction"]>[name="needle"]::after{
+        display:none;
+      }
+      [name="plane"]>.meter[name="direction"]>[name="value"]{
+        position:absolute;
+        top:15%;
+        left:50%;
+      }
+      [name="plane"]>.meter[name="balance"]{
+        background-color:transparent;
+        border-color:#fff8;
+        border-style:solid;
+        border-width:0.5em;
+      }
+      [name="plane"]>.meter[name="balance"]>[name="background"]{
+        background:linear-gradient(#9cf8 49%,#fff8 49%,#fff8 51%,#a508 51%);
+        border-style:none;
+        height:22.5em;
+        width:22.5em;
+        border-radius:50%;
+      }
+      [name="plane"]>.meter[name="balance"]>[name="needle"]{
+        background-color:#ff0;
+        border-radius:0;
+        height:1em;
+        width:10em;
+      }
+      [name="plane"]>.meter[name="balance"]>[name="needle"]::before{
+        background-color:#ff0;
+        display:block;
+        content:'';
+        height:100%;
+        width:100%;
+        transform:rotate(90deg);
+        clip-path:none;
+        position:absolute;
+        top:50%;
+      }
+      [name="plane"]>.meter[name="balance"]>[name="needle"]::after{
+        display:none;
+      }
+      [name="plane"]>.meter[name="fuel"]{
+        transform:translate(-50%,-50%);
+        bottom:75%;
+        right:-6%;
+      }
+    </style>
+    <script>
+      let max={
+        speed:0,
+        torque:0,
+        fuel:0
+      },
+      comm={
+        begin:function(ip){
+          alert(ip);
+          let meter=new ship(),i=0;
+          setInterval(function(){
+            meter.speed(i/10);
+            meter.wind(20+parseFloat((i/1000).toFixed(1)));
+            //meter.altitude(33000);
+            meter.direction(i/10);
+            meter.gps(35,135);
+            //meter.balance(i/2);
+            meter.fuel(fuel);
+            i++;
+          },17.5);
+        },
+        end:function(){
+          ;
+        },
+        search:function(){
+          let list=[];
+          list=[["TOYOTA AE86","http://192.168.0.123"],["HONDA NSX","http://192.154.0.120"],["NISSAN GT-R","http://192.167.0.102"],["MAZDA RX-8","http://192.179.0.105"],["MITSUBISHI Rancer Evolution","http://192.163.0.102"],["SUBARU IMPREZA","http://192.157.0.122"]];
+          return list;
+        }
+      },
+      list=[];
+      function position(x,y){
+        addEventListener("deviceorientation",(event)=>{
+          if(event.absolute){
+            alert(event.webkitCompassHeading);
+          }
+        });
+        document.querySelector('[name="position"]>[name="map"]>[name="location2"]').style.position="absolute";
+        document.querySelector('[name="position"]>[name="map"]>[name="location2"]').style.left=(x/2+50)+'%';
+        document.querySelector('[name="position"]>[name="map"]>[name="location2"]').style.top=(y/2+50)+'%';
+      }
+      function reload(){
+        list=comm.search();
+        for(var i=0;i<list.length;i++){
+          document.querySelector('div[name="connect"]>div[name="list"]').innerHTML+=`<span class="list" onclick="comm.end();comm.begin(list[${i}][1]);">${list[i][0]}</span><p>`;
+        }
+      }
+      class car{
+        constructor(){
+          let car=document.querySelectorAll('[name="car"]'),ship=document.querySelectorAll('[name="ship"]'),plane=document.querySelectorAll('[name="plane"]');
+          for(var i=0;i<2;i++){
+            car[i].style.display="block";
+            ship[i].style.display="none";
+            plane[i].style.display="none";
+          }
+          
+        }
+        speed(speed){
+          if(speed<=max.speed){
+            document.querySelector('[name="car"]>[name="speed"]>[name="needle"]').style.transform=`rotate(${-120+speed*(240/max.speed)}deg)`;
+            document.querySelector('[name="car"]>[name="speed"]>[name="value"]').textContent=Math.floor(speed);
+          }
+        }
+        torque(torque){
+          if(torque<=max.torque){
+            document.querySelector('[name="car"]>[name="torque"]>[name="needle"]').style.transform=`rotate(${-120+240/max.torque*torque}deg)`;
+            document.querySelector('[name="car"]>[name="torque"]>[name="value"]').textContent=Math.floor(gear);
+          }
+        }
+        fuel(fuel){
+          if(fuel<=max.fuel){
+            document.querySelector('[name="car"]>[name="fuel"]>[name="needle"]').style.transform=`rotate(${-120+240/max.fuel*fuel}deg)`;
+            document.querySelector('[name="car"]>[name="fuel"]>[name="value"]').textContent=fuel;
+          }
+        }
+      }
+      class ship{
+        constructor(){
+          let car=document.querySelectorAll('[name="car"]'),ship=document.querySelectorAll('[name="ship"]'),plane=document.querySelectorAll('[name="plane"]');
+          for(var i=0;i<2;i++){
+            car[i].style.display="none";
+            ship[i].style.display="block";
+            plane[i].style.display="none";
+          }
+        }
+        speed(speed){
+          if(speed<=max.speed){
+            document.querySelector('[name="ship"]>[name="speed"]>[name="needle"]').style.transform=`rotate(${-120+speed*(240/max.speed)}deg)`;
+            document.querySelector('[name="ship"]>[name="speed"]>[name="value"]').textContent=Math.floor(speed);
+          }
+        }
+        wind(wind){
+          document.querySelector('[name="ship"]>[name="wind"]>[name="value"]').textContent=wind;
+        }
+        direction(direction){
+          document.querySelector('[name="ship"]>[name="direction"]>[name="needle"]').style.transform=`rotate(${direction+180}deg)`;
+        }
+        gps(north,east){
+          document.querySelector('[name="ship"]>[name="gps"]>[name="value"]').textContent=`N:${north}°\nE:${east}°`;
+        }
+        fuel(fuel){
+          if(fuel<=max.fuel){
+            document.querySelector('[name="ship"]>[name="fuel"]>[name="needle"]').style.transform=`rotate(${-120+240/max.fuel*fuel}deg)`;
+            document.querySelector('[name="ship"]>[name="fuel"]>[name="value"]').textContent=fuel;
+          }
+        }
+      }
+      class plane{
+        constructor(){
+          let car=document.querySelectorAll('[name="car"]'),ship=document.querySelectorAll('[name="ship"]'),plane=document.querySelectorAll('[name="plane"]');
+          for(var i=0;i<2;i++){
+            car[i].style.display="none";
+            ship[i].style.display="none";
+            plane[i].style.display="block";
+          }
+        }
+        speed(speed){
+          if(speed<=max.speed){
+            document.querySelector('[name="plane"]>[name="speed"]>[name="needle"]').style.transform=`rotate(${-120+speed*(240/max.speed)}deg)`;
+            document.querySelector('[name="plane"]>[name="speed"]>[name="value"]').textContent=Math.floor(speed);
+          }
+        }
+        altitude(altitude){
+          document.querySelector('[name="plane"]>[name="altitude"]>[name="value"]').textContent=altitude;
+        }
+        balance(balance){
+          document.querySelector('[name="plane"]>[name="balance"]>[name="background"]').style.transform=`rotate(${0-balance}deg)`;
+        }
+        direction(direction){
+          document.querySelector('[name="plane"]>[name="direction"]>[name="needle"]').style.transform=`rotate(${direction+180}deg)`;
+        }
+        fuel(fuel){
+          if(fuel<=max.fuel){
+            document.querySelector('[name="plane"]>[name="fuel"]>[name="needle"]').style.transform=`rotate(${-120+240/max.fuel*fuel}deg)`;
+            document.querySelector('[name="plane"]>[name="fuel"]>[name="value"]').textContent=fuel;
+          }
+        }
+      }
+      
+      //ここからテスト用
+      max.speed=50;
+      max.torque=8;
+      max.fuel=50;
+      var speed=40,torque=0,wind=20,direction=20,fuel=50,gear=1,meter=new ship(),i=0;
+    </script>
+  </body>
+</html>
